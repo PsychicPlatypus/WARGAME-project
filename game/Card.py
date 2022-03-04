@@ -1,4 +1,5 @@
 # Assigned to Luan
+
 import random
 
 class Card:
@@ -16,3 +17,4 @@ class Card:
 
     def value_of_card(self, value):
         return self.values.get(value.split(" of ")[0])
+
