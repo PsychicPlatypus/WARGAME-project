@@ -1,4 +1,3 @@
-# Assigned to Luan
 import random
 
 class Card:
