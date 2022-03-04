@@ -1,6 +1,7 @@
 from Card import Card
 class Game():
     def play_short(self):
+        """ Plays the game for only 26 turns, shorter version """
         computer_cards, human_cards = 26, 26
 
         for i in range(26):
@@ -16,15 +17,11 @@ class Game():
             if value_you > value_computer:
                 human_cards += 2
                 computer_cards -= 2
-                print(
-                    f"You win.\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
+                self.print_screen(1, human_cards, computer_cards)
             elif value_computer > value_you:
                 human_cards -= 2
                 computer_cards += 2
-                print(
-                    f"The computer wins!!!\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
+                self.print_screen(2, human_cards, computer_cards)
             else:
                 if computer_cards < 8 or human_cards < 8:
                     print("We don't have enough cards for war")
@@ -33,12 +30,15 @@ class Game():
                     if (outcome := self.war()):
                         human_cards += 8
                         computer_cards -= 8
+                        self.print_screen(1, human_cards, computer_cards)
                     else:
                         human_cards -= 8
                         computer_cards += 8
+                        self.print_screen(2, human_cards, computer_cards)
         print(f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
 
     def play_long(self):
+        """ Plays the game until the entire deck runs out, long version"""
         computer_cards, human_cards = 26, 26
         
         while computer_cards or human_cards > 0:
@@ -54,15 +54,11 @@ class Game():
             if value_you > value_computer:
                 human_cards += 2
                 computer_cards -= 2
-                print(
-                    f"You win.\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
+                self.print_screen(1, human_cards, computer_cards)
             elif value_computer > value_you:
                 human_cards -= 2
                 computer_cards += 2
-                print(
-                    f"The computer wins!!!\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
+                self.print_screen(2, human_cards, computer_cards)
             else:
                 if computer_cards < 8 or human_cards < 8:
                     print("We don't have enough cards for war")
@@ -71,17 +67,32 @@ class Game():
                     if (outcome := self.war()):
                         human_cards += 8
                         computer_cards -= 8
+                        self.print_screen(1, human_cards, computer_cards)
                     else:
                         human_cards -= 8
                         computer_cards += 8
+                        self.print_screen(2, human_cards, computer_cards)
         print(
             f"No more cards!\n"
             f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
-
-    #def print_score(self, val_you, val):
+    
+    def print_screen(self, arg, human_cards, computer_cards):
+        """ Repetitive print function """
         
+        match arg:
+            case 1:
+                print(
+                    f"You win.\nYou have {human_cards} cards"
+                    f" and the computer has {computer_cards}")
+            case 2:
+                print(
+                    f"The computer wins!!!\nYou have {human_cards} cards"
+                    f" and the computer has {computer_cards}")
+                
 
     def war(self):
+        """ In case of a draw """
+        
         print("\nSAME CARDS, WAR!")
         c = Card()
         card_you = c.random_card()
