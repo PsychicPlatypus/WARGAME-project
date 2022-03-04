@@ -16,5 +16,5 @@ class Card:
         random.shuffle(self.suits)
         return self.ranks[0] + " of " + self.suits[0]
 
-    def value_of_card(self, value):
+    def value(self, value):
         return self.values.get(value.split(" of ")[0])

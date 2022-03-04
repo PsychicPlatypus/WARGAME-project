@@ -14,16 +14,14 @@ class Game:
                 break
             c = Card()
             print("\n" + "-" * 30)
-            card_you = c.random_card()
-            value_you = c.value_of_card(card_you)
-            card_computer = c.random_card()
-            value_computer = c.value_of_card(card_computer)
+            card_you, card_computer = c.random_card(), c.random_card()
+            val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if value_you > value_computer:
+            if val_you > val_com:
                 human_cards += 2
                 computer_cards -= 2
                 self.print_screen(True, human_cards, computer_cards)
-            elif value_computer > value_you:
+            elif val_com > val_you:
                 human_cards -= 2
                 computer_cards += 2
                 self.print_screen(False, human_cards, computer_cards)
@@ -51,16 +49,14 @@ class Game:
                 break
             c = Card()
             print("\n" + "-" * 30)
-            card_you = c.random_card()
-            value_you = c.value_of_card(card_you)
-            card_computer = c.random_card()
-            value_computer = c.value_of_card(card_computer)
+            card_you, card_computer = c.random_card(), c.random_card()
+            val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if value_you > value_computer:
+            if val_you > val_com:
                 human_cards += 2
                 computer_cards -= 2
                 self.print_screen(True, human_cards, computer_cards)
-            elif value_computer > value_you:
+            elif val_com > val_you:
                 human_cards -= 2
                 computer_cards += 2
                 self.print_screen(False, human_cards, computer_cards)
@@ -97,14 +93,12 @@ class Game:
         """In case of a draw."""
         print("\nSAME CARDS, WAR!")
         c = Card()
-        card_you = c.random_card()
-        value_you = c.value_of_card(card_you)
-        card_computer = c.random_card()
-        value_computer = c.value_of_card(card_computer)
-        return value_you > value_computer \
+        card_you, card_computer = c.random_card(), c.random_card()
+        val_you, val_com = c.value(card_you), c.value(card_computer)
+        return val_you > val_com \
             if card_you != card_computer else self.war()
 
 
 if __name__ == "__main__":
     test = Game()
-    test.play_long()
+    test.play_short()
