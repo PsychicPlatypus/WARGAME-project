@@ -79,15 +79,14 @@ class Game:
 
     def print_screen(self, arg, human_cards, computer_cards):
         """Repetitive print function."""
-        match arg:
-            case True:
-                print(
-                    f"You win.\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
-            case False:
-                print(
-                    f"The computer wins!!!\nYou have {human_cards} cards"
-                    f" and the computer has {computer_cards}")
+        if arg:
+            print(
+                f"You win.\nYou have {human_cards} cards"
+                f" and the computer has {computer_cards}")
+        else:
+            print(
+                f"The computer wins!!!\nYou have {human_cards} cards"
+                f" and the computer has {computer_cards}")
 
     def war(self):
         """In case of a draw."""
