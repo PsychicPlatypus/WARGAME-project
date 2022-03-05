@@ -28,4 +28,4 @@ class Shell(cmd.Cmd):
     def do_exit(self, _):
         """Exit the game."""
         print("""Thank you for playing with me! Bye!""")
-        return True    
+        return True
