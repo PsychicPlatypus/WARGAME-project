@@ -1,4 +1,4 @@
-import Shell
+import shell
 
 if __name__ == "__main__":
-    Shell.Shell().cmdloop()
+    shell.Shell().cmdloop()
