@@ -1,5 +1,5 @@
 """The logic behind the War card game."""
-from Card import Card
+from card import Card
 
 
 class Game:

@@ -1,13 +1,15 @@
 # Assigned to einav
 
 import cmd
-import Game
+import game
 
 class Shell(cmd.Cmd):
     """Shell for war game"""
 
-    intro = """Welcome to war game! type 'start', 'help' or 'long'"""
-    
+
+    def __init__(self):
+        intro = """Welcome to war game! type 'start', 'help' or 'long'"""
+        
 
     def do_start(self, _):
         print("""You and me will play war game. When you want to draw a card, press enter.
@@ -29,3 +31,7 @@ class Shell(cmd.Cmd):
         """Exit the game."""
         print("""Thank you for playing with me! Bye!""")
         return True
+    
+    def do_restart(self, _):
+        print("""You chose to restart the game.""")
+        self.do_start()
