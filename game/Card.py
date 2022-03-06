@@ -2,7 +2,7 @@
 import random
 
 class Card:
-    #Declaring the deck of cards and their values
+    #Declaring the deck of cards and their value
     suits = ['Hearts','Clubs','Spades','Diamonds']
 
     ranks = ['Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King','Ace']
@@ -15,7 +15,6 @@ class Card:
         random.shuffle(self.ranks)
         random.shuffle(self.suits)
         return self.ranks[0] + " of " + self.suits[0]
-    
-    #Function ot get the value of the cards
+
     def value_of_card(self, value):
         return self.values.get(value.split(" of ")[0])
