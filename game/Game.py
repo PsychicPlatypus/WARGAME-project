@@ -6,13 +6,11 @@ from highscores import highscores
 class Game:
     """Placeholder for docstring."""
 
-    def play_short(self) -> None:
+    def play_short(self, player) -> None:
         """Plays the game for only 26 turns, shorter version."""
-        com_cards, hum_cards, counter = 26, 26, 0
+        com_cards, hum_cards = 26, 26
 
         for i in range(26):
-            if com_cards <= 0 or hum_cards <= 0:
-                break
             c = Card()
             print("\n" + "-" * 30)
             card_you, card_computer = c.random_card(), c.random_card()
@@ -26,11 +24,10 @@ class Game:
             else:
                 res_two = self.war(com_cards, hum_cards)
                 hum_cards, com_cards = res_two[1], res_two[2]
-            counter += 1
         print(f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
-        highscores().short_scores("Dzenis", hum_cards, counter)
+        highscores().short_scores(player, hum_cards, hum_cards > com_cards)
 
-    def play_long(self) -> None:
+    def play_long(self, player) -> None:
         """Plays the game until the entire deck runs out, long version."""
         """CAUTION: This can take more than 300 draws!"""
         com_cards, hum_cards, counter = 26, 26, 0
@@ -53,7 +50,7 @@ class Game:
         print(
             f"No more cards!\n"
             f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
-        highscores().long_scores("Dzenis", hum_cards, counter)
+        highscores().long_scores(player, hum_cards, counter)
 
     def ask_input() -> None:
         arg = input("Would you like to continue?: ")
