@@ -6,87 +6,59 @@ from highscores import highscores
 class Game:
     """Placeholder for docstring."""
 
-    def play_short(self):
+    def play_short(self) -> None:
         """Plays the game for only 26 turns, shorter version."""
-        computer_cards, human_cards, counter = 26, 26, 0
+        com_cards, hum_cards, counter = 26, 26, 0
 
         for i in range(26):
-            if computer_cards <= 0 or human_cards <= 0:
+            if com_cards <= 0 or hum_cards <= 0:
                 break
             c = Card()
             print("\n" + "-" * 30)
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if val_you > val_com:
-                human_cards += 2
-                computer_cards -= 2
-                self.print_screen(True, human_cards, computer_cards)
-            elif val_com > val_you:
-                human_cards -= 2
-                computer_cards += 2
-                self.print_screen(False, human_cards, computer_cards)
+            if val_you != val_com:
+                res = self.who_wins(com_cards, hum_cards, val_com, val_you)
+                hum_cards, com_cards = res[1], res[2]
+            elif com_cards < 4 or hum_cards < 4:
+                print("We don't have enough cards for war")
             else:
-                if computer_cards < 8 or human_cards < 8:
-                    print("We don't have enough cards for war")
-                    pass
-                else:
-                    if (outcome := self.war()):
-                        human_cards += 8
-                        computer_cards -= 8
-                        self.print_screen(outcome, human_cards, computer_cards)
-                    else:
-                        human_cards -= 8
-                        computer_cards += 8
-                        self.print_screen(outcome, human_cards, computer_cards)
+                res_two = self.war(com_cards, hum_cards)
+                hum_cards, com_cards = res_two[1], res_two[2]
             counter += 1
-        print(f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
-        highscores().short_scores("Dzenis", human_cards, counter)
-        
+        print(f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
+        highscores().short_scores("Dzenis", hum_cards, counter)
 
-    def play_long(self):
+    def play_long(self) -> None:
         """Plays the game until the entire deck runs out, long version."""
-        computer_cards, human_cards, counter = 26, 26, 0
+        """CAUTION: This can take more than 300 draws!"""
+        com_cards, hum_cards, counter = 26, 26, 0
 
-        while computer_cards or human_cards > 0:
-            if computer_cards <= 0 or human_cards <= 0:
-                break
+        while com_cards > 0 and hum_cards > 0:
             c = Card()
             print("\n" + "-" * 30)
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if val_you > val_com:
-                human_cards += 2
-                computer_cards -= 2
-                self.print_screen(True, human_cards, computer_cards)
-            elif val_com > val_you:
-                human_cards -= 2
-                computer_cards += 2
-                self.print_screen(False, human_cards, computer_cards)
+            if val_you != val_com:
+                res = self.who_wins(com_cards, hum_cards, val_com, val_you)
+                hum_cards, com_cards = res[1], res[2]
+            elif com_cards < 4 or hum_cards < 4:
+                print("We don't have enough cards for war")
             else:
-                if computer_cards < 5 or human_cards < 5:
-                    print("We don't have enough cards for war")
-                    pass
-                else:
-                    if (outcome := self.war()):
-                        human_cards += 8
-                        computer_cards -= 4
-                        self.print_screen(outcome, human_cards, computer_cards)
-                    else:
-                        human_cards -= 4
-                        computer_cards += 8
-                        self.print_screen(outcome, human_cards, computer_cards)
+                res_two = self.war(com_cards, hum_cards)
+                hum_cards, com_cards = res_two[1], res_two[2]
             counter += 1
         print(
             f"No more cards!\n"
-            f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
-        highscores().long_scores("Dzenis", human_cards, counter)
+            f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
+        highscores().long_scores("Dzenis", hum_cards, counter)
 
-    def ask_input():
+    def ask_input() -> None:
         arg = input("Would you like to continue?: ")
 
-    def print_screen(self, arg, human_cards, computer_cards):
+    def print_screen(self, arg, human_cards, computer_cards) -> None:
         """Repetitive print function."""
         if arg:
             print(
@@ -97,15 +69,28 @@ class Game:
                 f"The computer wins!!!\nYou have {human_cards} cards"
                 f" and the computer has {computer_cards}")
 
-    def war(self):
+    def who_wins(self, com, hum, v_com, v_hum) -> tuple:
+        """Decides who wins."""
+        if v_com > v_hum:
+            com += 1
+            hum -= 1
+        else:
+            hum += 1
+            com -= 1
+        return (self.print_screen(v_hum > v_com, hum, com), hum, com)
+
+    def war(self, com, hum) -> tuple:
         """In case of a draw."""
         print("\nSAME CARDS, WAR!")
         c = Card()
-        card_you, card_computer = c.random_card(), c.random_card()
-        val_you, val_com = c.value(card_you), c.value(card_computer)
-        return val_you > val_com \
-            if card_you != card_computer else self.war()
-
-if __name__ == "__main__":
-    test = Game()
-    test.play_long()
+        hum_c, com_c = c.random_card(), c.random_card()
+        val_h, val_c = c.value(hum_c), c.value(com_c)
+        if val_h == val_c:
+            return self.war(com, hum)
+        elif val_h > val_c:
+            hum += 4
+            com -= 4
+        else:
+            com += 4
+            hum -= 4
+        return (self.print_screen(val_h > val_c, hum, com), hum, com)
