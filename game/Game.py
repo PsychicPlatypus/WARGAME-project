@@ -1,5 +1,6 @@
 """The logic behind the War card game."""
 from card import Card
+from highscores import highscores
 
 
 class Game:
@@ -7,7 +8,7 @@ class Game:
 
     def play_short(self):
         """Plays the game for only 26 turns, shorter version."""
-        computer_cards, human_cards = 26, 26
+        computer_cards, human_cards, counter = 26, 26, 0
 
         for i in range(26):
             if computer_cards <= 0 or human_cards <= 0:
@@ -38,11 +39,14 @@ class Game:
                         human_cards -= 8
                         computer_cards += 8
                         self.print_screen(outcome, human_cards, computer_cards)
+            counter += 1
         print(f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
+        highscores().short_scores("Dzenis", human_cards, counter)
+        
 
     def play_long(self):
         """Plays the game until the entire deck runs out, long version."""
-        computer_cards, human_cards = 26, 26
+        computer_cards, human_cards, counter = 26, 26, 0
 
         while computer_cards or human_cards > 0:
             if computer_cards <= 0 or human_cards <= 0:
@@ -73,9 +77,14 @@ class Game:
                         human_cards -= 8
                         computer_cards += 8
                         self.print_screen(outcome, human_cards, computer_cards)
+            counter += 1
         print(
             f"No more cards!\n"
             f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
+        highscores().long_scores("Dzenis", human_cards, counter)
+
+    def ask_input():
+        arg = input("Would you like to continue?: ")
 
     def print_screen(self, arg, human_cards, computer_cards):
         """Repetitive print function."""
@@ -97,7 +106,6 @@ class Game:
         return val_you > val_com \
             if card_you != card_computer else self.war()
 
-
 if __name__ == "__main__":
     test = Game()
-    test.play_short()
+    test.play_long()
