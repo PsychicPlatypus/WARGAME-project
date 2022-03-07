@@ -65,16 +65,16 @@ class Game:
                 computer_cards += 2
                 self.print_screen(False, human_cards, computer_cards)
             else:
-                if computer_cards < 5 or human_cards < 5:
+                if computer_cards < 8 or human_cards < 8:
                     print("We don't have enough cards for war")
                     pass
                 else:
                     if (outcome := self.war()):
                         human_cards += 8
-                        computer_cards -= 4
+                        computer_cards -= 8
                         self.print_screen(outcome, human_cards, computer_cards)
                     else:
-                        human_cards -= 4
+                        human_cards -= 8
                         computer_cards += 8
                         self.print_screen(outcome, human_cards, computer_cards)
             counter += 1
@@ -83,7 +83,7 @@ class Game:
             f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
         highscores().long_scores("Dzenis", human_cards, counter)
 
-    def ask_input():
+    def ask_input() -> None:
         arg = input("Would you like to continue?: ")
 
     def print_screen(self, arg, human_cards, computer_cards):
@@ -97,7 +97,7 @@ class Game:
                 f"The computer wins!!!\nYou have {human_cards} cards"
                 f" and the computer has {computer_cards}")
 
-    def war(self):
+    def war(self) -> str:
         """In case of a draw."""
         print("\nSAME CARDS, WAR!")
         c = Card()
