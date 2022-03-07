@@ -42,7 +42,6 @@ class Game:
             counter += 1
         print(f"Final score:\nYou: {human_cards}\tComputer: {computer_cards}")
         highscores().short_scores("Dzenis", human_cards, counter)
-        
 
     def play_long(self):
         """Plays the game until the entire deck runs out, long version."""
@@ -105,7 +104,3 @@ class Game:
         val_you, val_com = c.value(card_you), c.value(card_computer)
         return val_you > val_com \
             if card_you != card_computer else self.war()
-
-if __name__ == "__main__":
-    test = Game()
-    test.play_long()

@@ -1,8 +1,11 @@
+"""This class stores highscores from the game."""
+
+
 class highscores:
-    """Keep highscores in a seperate .txt file."""
+    """Keeps highscores in a seperate .txt file."""
 
     def short_scores(self, player, score, counter) -> None:
-        """Short scores are based on the number of cards at the end of the game. """
+        """Short scores are based on the number of cards at the end."""
         with open("game/highscores_short.txt", "a") as f:
             f.write(f"{player}: {score} ---- Draws: {counter}\n")
         self.sort_highscores("game/highscores_short.txt", 1, True)
@@ -19,7 +22,8 @@ class highscores:
         """Sorts highscores based on the game type."""
         with open(high, "r") as f:
             scores = f.readlines()
-            scores = sorted(scores, key=lambda i: int(i.split(" ")[t]), reverse=b)
+            scores = sorted(scores, key=lambda i: int(i.split(" ")[t]),
+                            reverse=b)
         with open(high, "w") as w:
             w.writelines(scores)
 
