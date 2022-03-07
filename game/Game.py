@@ -16,7 +16,9 @@ class Game:
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if val_you != val_com:
+            if not self.ask_input():
+                break
+            elif val_you != val_com:
                 res = self.who_wins(com_cards, hum_cards, val_com, val_you)
                 hum_cards, com_cards = res[1], res[2]
             elif com_cards < 4 or hum_cards < 4:
@@ -43,6 +45,7 @@ class Game:
                 hum_cards, com_cards = res[1], res[2]
             elif com_cards < 4 or hum_cards < 4:
                 print("We don't have enough cards for war")
+                counter -= 1
             else:
                 res_two = self.war(com_cards, hum_cards)
                 hum_cards, com_cards = res_two[1], res_two[2]
@@ -52,8 +55,9 @@ class Game:
             f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
         highscores().long_scores(player, hum_cards, counter)
 
-    def ask_input() -> None:
+    def ask_input(self) -> None:
         arg = input("Would you like to continue?: ")
+        return arg.upper() in ["Y", "YES", "TRUE", "1", ""]
 
     def print_screen(self, arg, human_cards, computer_cards) -> None:
         """Repetitive print function."""
