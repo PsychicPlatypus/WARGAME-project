@@ -1,5 +1,5 @@
 """The logic behind the War card game."""
-from card import Card
+from Card import Card
 from highscores import highscores
 
 
