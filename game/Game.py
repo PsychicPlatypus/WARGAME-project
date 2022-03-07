@@ -6,7 +6,7 @@ from highscores import highscores
 class Game:
     """Placeholder for docstring."""
 
-    def play_short(self, player) -> None:
+    def play_short(self, player, cheat=False) -> None:
         """Plays the game for only 26 turns, shorter version."""
         com_cards, hum_cards = 26, 26
 
@@ -16,9 +16,10 @@ class Game:
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
-            if not self.ask_input():
-                break
-            elif val_you != val_com:
+            if not cheat:
+                if not self.ask_input():
+                    break
+            if val_you != val_com:
                 res = self.who_wins(com_cards, hum_cards, val_com, val_you)
                 hum_cards, com_cards = res[1], res[2]
             elif com_cards < 4 or hum_cards < 4:
@@ -26,10 +27,10 @@ class Game:
             else:
                 res_two = self.war(com_cards, hum_cards)
                 hum_cards, com_cards = res_two[1], res_two[2]
-        print(f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
+        print(f"\nFinal score:\nYou: {hum_cards}\tComputer: {com_cards}")
         highscores().short_scores(player, hum_cards, hum_cards > com_cards)
 
-    def play_long(self, player) -> None:
+    def play_long(self, player, cheat=False) -> None:
         """Plays the game until the entire deck runs out, long version."""
         """CAUTION: This can take more than 300 draws!"""
         com_cards, hum_cards, counter = 26, 26, 0
@@ -40,6 +41,9 @@ class Game:
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
             print(f"You: {card_you:<8} Computer: {card_computer}")
+            if not cheat:
+                if not self.ask_input():
+                    break
             if val_you != val_com:
                 res = self.who_wins(com_cards, hum_cards, val_com, val_you)
                 hum_cards, com_cards = res[1], res[2]
@@ -94,4 +98,5 @@ class Game:
         else:
             com += 4
             hum -= 4
+        print(f"You: {hum_c:<8} Computer: {com_c}")
         return (self.print_screen(val_h > val_c, hum, com), hum, com)

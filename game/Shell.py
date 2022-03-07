@@ -37,4 +37,11 @@ class Shell(cmd.Cmd):
         self.do_start(_)
 
     def do_cheat(self, _):
-        pass
+        print("""Cheater!""")
+        cheat_game = game.Game()
+        cheat_game.play_short("Cheater", cheat=True)
+
+    def do_long_cheat(self, _):
+        print("""Cheater!""")
+        cheat_game = game.Game()
+        cheat_game.play_long("Cheater", cheat=True)
