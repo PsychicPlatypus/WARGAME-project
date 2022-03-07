@@ -61,16 +61,16 @@ class Game:
                 computer_cards += 2
                 self.print_screen(False, human_cards, computer_cards)
             else:
-                if computer_cards < 8 or human_cards < 8:
+                if computer_cards < 5 or human_cards < 5:
                     print("We don't have enough cards for war")
                     pass
                 else:
                     if (outcome := self.war()):
                         human_cards += 8
-                        computer_cards -= 8
+                        computer_cards -= 4
                         self.print_screen(outcome, human_cards, computer_cards)
                     else:
-                        human_cards -= 8
+                        human_cards -= 4
                         computer_cards += 8
                         self.print_screen(outcome, human_cards, computer_cards)
         print(
