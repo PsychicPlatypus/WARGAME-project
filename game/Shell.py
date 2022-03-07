@@ -3,24 +3,21 @@
 import cmd
 import game
 
+
+
 class Shell(cmd.Cmd):
     """Shell for war game"""
-
-    intro = """
     
-░██╗░░░░░░░██╗░█████╗░██████╗░  ░██████╗░░█████╗░███╗░░░███╗███████╗
-░██║░░██╗░░██║██╔══██╗██╔══██╗  ██╔════╝░██╔══██╗████╗░████║██╔════╝
-░╚██╗████╗██╔╝███████║██████╔╝  ██║░░██╗░███████║██╔████╔██║█████╗░░
-░░████╔═████║░██╔══██║██╔══██╗  ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░
-░░╚██╔╝░╚██╔╝░██║░░██║██║░░██║  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
-░░░╚═╝░░░╚═╝░░╚═╝░░╚═╝╚═╝░░╚═╝  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
-
-       \nWelcome to war game! type 'start', 'help' or 'long'\n"""  
+    def __init__(self, name):
+        super(Shell, self).__init__()
+        print("""Type 'start', 'help' or 'long'""")
+        self.name = name
+        
 
     def do_start(self, _):
         print("""You and me will play war game. When you want to draw a card, press enter.
         Whoever has a higher card win both cards.\n""")
-        the_game = game.Game()
+        the_game = game.Game(self.name)
         the_game.play_short()
         print("""Type 'start' to start a new game or 'exit' to quit.""")
     
