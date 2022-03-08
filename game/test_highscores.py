@@ -10,19 +10,10 @@ class Test_highscores(unittest.TestCase):
         self.assertIsInstance(res, exp)
 
 
-    def test_raises_error(self):
-        hs_cls = highscores.highscores()
-        with self.assertRaises(Exception):
-            hs_cls.sort_highscores("123.txt", 1, False)
-        
-        with self.assertRaises(Exception):
-            hs_cls.shorten_list("123.txt")
-
-
     def test_player_in_file_long(self):
         hs_cls = highscores.highscores()
         hs_cls.long_scores("Jeff", "52", "122")
-        with open("game/highscores_long.txt", "r") as txt_file:
+        with open("highscores_long.txt", "r") as txt_file:
             scores = txt_file.readlines()
         my_player = False
         for i in scores:
@@ -35,7 +26,7 @@ class Test_highscores(unittest.TestCase):
     def test_player_in_file_short(self):
         hs_cls = highscores.highscores()
         hs_cls.short_scores("Jeff", "52", "122")
-        with open("game/highscores_short.txt", "r") as txt_file:
+        with open("highscores_short.txt", "r") as txt_file:
             scores = txt_file.readlines()
         my_player = False
         for i in scores:
@@ -47,13 +38,13 @@ class Test_highscores(unittest.TestCase):
 
     def test_shorten_list(self):
         hs_cls = highscores.highscores()
-        hs_cls.shorten_list("game/highscores_long.txt")
-        with open("game/highscores_long.txt", "r") as long_file:
+        hs_cls.shorten_list("highscores_long.txt")
+        with open("highscores_long.txt", "r") as long_file:
             long_scores = long_file.readlines()
         self.assertLessEqual(len(long_scores), 20)
      
-        hs_cls.shorten_list("game/highscores_short.txt")
-        with open("game/highscores_short.txt", "r") as short_file:
+        hs_cls.shorten_list("highscores_short.txt")
+        with open("highscores_short.txt", "r") as short_file:
             short_scores = short_file.readlines()
         self.assertLessEqual(len(short_scores), 20)
 
@@ -68,7 +59,7 @@ class Test_highscores(unittest.TestCase):
         hs_cls = highscores.highscores()
         hs_cls.short_scores("Jeff", "45", "25")
         hs_cls.short_scores("Ish", "0", "26")
-        with open("game/highscores_short.txt", "r") as txt_file:
+        with open("highscores_short.txt", "r") as txt_file:
             scores = txt_file.readlines()
         for i in scores:
             if "45" in i:
@@ -89,7 +80,7 @@ class Test_highscores(unittest.TestCase):
         high_score = 0
         low_score = 0
         
-        with open("game/highscores_long.txt", "r") as txt_file:
+        with open("highscores_long.txt", "r") as txt_file:
             scores = txt_file.readlines()
         for i in scores:
             if "11" in i:
