@@ -1,5 +1,5 @@
 import unittest
-from Card.Card import Card
+from card import Card
 
 class test_card (unittest.TestCase):
     def test__init__(self):

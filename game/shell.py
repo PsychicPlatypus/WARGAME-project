@@ -15,16 +15,16 @@ class Shell(cmd.Cmd):
     def do_start(self, _):
         print("""You and me will play war game. When you want to draw a card, press enter.
         Whoever has a higher card win both cards.\n""")
-        the_game = game.Game(self.name)
-        the_game.play_short()
+        the_game = game.Game()
+        the_game.play_short(self.name)
         print("""Type 'start' to start a new game or 'exit' to quit.""")
 
     def do_long(self, _):
         print("""This is a long version of the game. 
-        We will play until one of us has all the deck.
+        We will play until one of us has all of the deck.
         When you want to draw a card, press enter.""")
         long_game = game.Game()
-        long_game.play_long()
+        long_game.play_long(self.name)
         print("""\nType 'long' to start a new game or 'exit' to quit.\n""")
 
     def do_exit(self, _):
@@ -37,4 +37,11 @@ class Shell(cmd.Cmd):
         self.do_start(_)
 
     def do_cheat(self, _):
-        pass
+        print("""Cheater!""")
+        cheat_game = game.Game()
+        cheat_game.play_short("Cheater", cheat=True)
+
+    def do_long_cheat(self, _):
+        print("""Cheater!""")
+        cheat_game = game.Game()
+        cheat_game.play_long("Cheater", cheat=True)
