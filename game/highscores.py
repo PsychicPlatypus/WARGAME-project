@@ -7,31 +7,31 @@ class highscores:
     def short_scores(self, player, score, victory) -> None:
         """Short scores are based on the number of cards at the end."""
         try:
-            with open("game/highscores_short.txt", "a") as f:
+            with open("highscores_short.txt", "a") as f:
                 f.write(f"{player}: {score} ---- Won: {victory}\n")
-            self.sort_highscores("game/highscores_short.txt", 1, True)
-            self.shorten_list("game/highscores_short.txt")
+            self.sort_highscores("highscores_short.txt", 1, True)
+            self.shorten_list("highscores_short.txt")
         except Exception as err:
             print(err)
 
     def long_scores(self, player, score, counter) -> None:
         """Long scores are based on the amount of draws."""
         try:    
-            with open("game/highscores_long.txt", "a") as f:
+            with open("highscores_long.txt", "a") as f:
                 f.write(f"{player}: {score} ---- Draws: {counter}\n")
-            self.sort_highscores("game/highscores_long.txt", -1, False)
-            self.shorten_list("game/highscores_long.txt")
+            self.sort_highscores("highscores_long.txt", -1, False)
+            self.shorten_list("highscores_long.txt")
         except Exception as err:
             print(err)
 
     def sort_highscores(self, high_file, type_sort, backwards):
         try:
             """Sorts highscores based on the game type."""
-            with open("abc.txt", "r") as txt_file:
+            with open(high_file, "r") as txt_file:
                 scores = txt_file.readlines()
                 scores = sorted(scores, key=lambda i: int(i.split(" ")[type_sort]),
                                 reverse=backwards)
-            with open("abc.txt", "w") as w:
+            with open(high_file, "w") as w:
                 w.writelines(scores)
         except Exception as err:
             print(err)
