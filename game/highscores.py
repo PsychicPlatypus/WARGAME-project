@@ -4,10 +4,10 @@
 class highscores:
     """Keeps highscores in a seperate .txt file."""
 
-    def short_scores(self, player, score, counter) -> None:
+    def short_scores(self, player, score, victory) -> None:
         """Short scores are based on the number of cards at the end."""
         with open("game/highscores_short.txt", "a") as f:
-            f.write(f"{player}: {score} ---- Draws: {counter}\n")
+            f.write(f"{player}: {score} ---- Won: {victory}\n")
         self.sort_highscores("game/highscores_short.txt", 1, True)
         self.shorten_list("game/highscores_short.txt")
 
