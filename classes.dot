@@ -1,6 +1,0 @@
-digraph "classes" {
-rankdir=BT
-charset="utf-8"
-"guess.game.Game" [color="black", fontcolor="black", label="{Game|high_number : int\llow_number : int\lthe_number : NoneType\lthe_number : int\l|cheat()\lguess(a_number)\lhigh()\llow()\lstart()\l}", shape="record", style="solid"];
-"guess.shell.Shell" [color="black", fontcolor="black", label="{Shell|game\lintro : str\lprompt : str\l|do_EOF(arg)\ldo_cheat(_)\ldo_exit(_)\ldo_guess(arg)\ldo_q(arg)\ldo_quit(arg)\ldo_start(_)\l}", shape="record", style="solid"];
-}
