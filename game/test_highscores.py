@@ -72,7 +72,13 @@ class Test_highscores(unittest.TestCase):
     def test_sorts_long_game(self):
         """Checking that the higher score in counter is placed before the lower counter score
         and sorted by the counter and not the score."""
-    
+        
+        
+        """Clear the file first"""
+        with open("highscores_long.txt","r+") as file_to_clear:
+            file_to_clear.truncate(0)  
+        
+        """Insert new records to file"""
         hs_cls = highscores.highscores()
         hs_cls.long_scores("Jeff", "0", "11")
         hs_cls.long_scores("Ish", "1", "200")
@@ -80,6 +86,8 @@ class Test_highscores(unittest.TestCase):
         high_score = 0
         low_score = 0
         
+        """Get the index of each record so see that the index of the high score
+        is lower than the index of the low score"""
         with open("highscores_long.txt", "r") as txt_file:
             scores = txt_file.readlines()
         for i in scores:
