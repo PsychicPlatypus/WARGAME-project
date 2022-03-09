@@ -90,5 +90,17 @@ class Test_highscores(unittest.TestCase):
         self.assertLess(high_score, low_score)
 
 
+    def test_list_is_shorten(self):
+        highscores_file = "highscores_short.txt"
+        hs_cls = highscores.highscores()
+        with open(highscores_file, "w") as txt_file:
+            for i in range(25):
+                txt_file.write(f"Jeff: 10 ---- Draws: 10\n")
+        hs_cls.shorten_list(highscores_file)
+        with open(highscores_file, "r") as checking_file:
+            file_list = checking_file.readlines()
+        self.assertEqual(20, len(file_list))
+
+
 if __name__ == '__main__':
     unittest.main()
