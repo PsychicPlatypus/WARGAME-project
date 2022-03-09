@@ -16,7 +16,7 @@ class highscores:
 
     def long_scores(self, player, score, counter) -> None:
         """Long scores are based on the amount of draws."""
-        try:    
+        try:
             with open("highscores_long.txt", "a") as f:
                 f.write(f"{player}: {score} ---- Draws: {counter}\n")
             self.sort_highscores("highscores_long.txt", -1, False)
@@ -25,12 +25,12 @@ class highscores:
             print(err)
 
     def sort_highscores(self, high_file, type_sort, backwards):
+        """Sorts highscores based on the game type."""
         try:
-            """Sorts highscores based on the game type."""
             with open(high_file, "r") as txt_file:
                 scores = txt_file.readlines()
-                scores = sorted(scores, key=lambda i: int(i.split(" ")[type_sort]),
-                                reverse=backwards)
+                scores = sorted(scores, key=lambda i: int(i.split(" ")
+                                [type_sort]), reverse=backwards)
             with open(high_file, "w") as w:
                 w.writelines(scores)
         except Exception as err:
@@ -47,6 +47,3 @@ class highscores:
                     w.writelines(scores[0:20])
         except Exception as err:
             print(err)
-
-if __name__ == "__main__":
-    highscores.sort_highscores("abc.txt", 1, False)
