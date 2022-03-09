@@ -74,7 +74,9 @@ class test_game(unittest.TestCase):
             self.assertEqual(res, exp)
     
     def test_cheat_short(self):
-        res = Game().play_short("Tester", cheat=True)
-        pass
-        
-        
+        with self.HiddenPrints():
+            Game().play_short("Tester", cheat=True)
+            res = True
+            with open("highscores_short.txt", "r") as r:
+                exp = True if "Tester" in r.readlines() else False
+            self.assertEqual(res, exp)
