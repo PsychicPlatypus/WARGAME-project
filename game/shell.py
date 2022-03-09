@@ -9,16 +9,17 @@ class Shell(cmd.Cmd):
     def __init__(self, name):
         """Class constructor, prints out commands."""
         super(Shell, self).__init__()
-        print("""Type 'start', 'help' or 'long'""")
+        print("""Type 'start', 'long' or 'help'""")
         self.name = name
 
     def do_start(self, _):
         """Starts the game in "short" mode with "cheat" off."""
-        print("""You and me will play war game. When you want to draw a card, press enter.
-        Whoever has a higher card win both cards.\n""")
+        print("""
+You and me will play war game. When you want to draw a card, press enter.
+Whoever has a higher card win both cards.\n""")
         the_game = game.Game()
         the_game.play_short(self.name)
-        print("""Type 'start' to start a new game or 'exit' to quit.""")
+        print("""\nType 'start' to start a new game or 'exit' to quit.""")
 
     def do_long(self, _):
         """Starts the game in "long" mode with "cheat" off."""
