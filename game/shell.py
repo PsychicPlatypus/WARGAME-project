@@ -1,18 +1,19 @@
-# Assigned to einav
-
+"""Shell class for the game."""
 import cmd
 import game
 
 
 class Shell(cmd.Cmd):
-    """Shell for war game"""
+    """Shell for war game."""
 
     def __init__(self, name):
+        """Class constructor, prints out commands."""
         super(Shell, self).__init__()
         print("""Type 'start', 'help' or 'long'""")
         self.name = name
 
     def do_start(self, _):
+        """Starts the game in "short" mode with "cheat" off."""
         print("""You and me will play war game. When you want to draw a card, press enter.
         Whoever has a higher card win both cards.\n""")
         the_game = game.Game()
@@ -20,7 +21,8 @@ class Shell(cmd.Cmd):
         print("""Type 'start' to start a new game or 'exit' to quit.""")
 
     def do_long(self, _):
-        print("""This is a long version of the game. 
+        """Starts the game in "long" mode with "cheat" off."""
+        print("""This is a long version of the game.
         We will play until one of us has all of the deck.
         When you want to draw a card, press enter.""")
         long_game = game.Game()
