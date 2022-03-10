@@ -67,7 +67,7 @@ class Game:
         """Repetitive print function."""
         if arg:
             print(
-                f"You win.\nYou have {human_cards} cards"
+                f"Great! You win!!!\nYou have {human_cards} cards"
                 f" and the computer has {computer_cards}")
         else:
             print(
