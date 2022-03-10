@@ -7,7 +7,7 @@ import io
 import random
 import sys
 import os
-from game import game
+from war import game
 
 
 class test_game(unittest.TestCase):
