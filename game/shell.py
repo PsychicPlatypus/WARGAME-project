@@ -16,8 +16,7 @@ class Shell(cmd.Cmd):
         """Start the game in "short" mode with "cheat" off."""
         print("""
 You and me will play war game. When you want to draw a card, press enter.
-Whoever has a higher card win both cards.\n"""
-        )
+Whoever has a higher card win both cards.\n""")
         the_game = game.Game()
         the_game.play_short(self.name)
         print("""\nType 'start' to start a new game or 'exit' to quit.""")
@@ -26,8 +25,7 @@ Whoever has a higher card win both cards.\n"""
         """Start the game in "long" mode with "cheat" off."""
         print("""This is a long version of the game.
         We will play until one of us has all of the deck.
-        When you want to draw a card, press enter."""
-        )
+        When you want to draw a card, press enter.""")
         long_game = game.Game()
         long_game.play_long(self.name)
         print("""\nType 'long' to start a new game or 'exit' to quit.\n""")

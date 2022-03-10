@@ -60,8 +60,8 @@ class Game:
         highscores().long_scores(player, hum_cards, counter)
 
     def ask_input(self) -> None:
-        
-        arg = input("Would you like to continue?: ")
+        """Gets the input from unit (to continue drawing cards)."""
+        arg = input("Would you like to continue ('enter' or 'yes')? ")
         return arg.upper() in ["Y", "YES", "TRUE", "1", ""]
 
     def print_screen(self, arg, human_cards, computer_cards) -> None:

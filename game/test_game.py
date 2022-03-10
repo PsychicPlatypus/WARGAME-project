@@ -1,4 +1,6 @@
 """Tests functionalities of the game class."""
+
+
 import unittest
 import unittest.mock
 import io
@@ -20,7 +22,7 @@ class test_game(unittest.TestCase):
             sys.stdout = open(os.devnull, "w")
 
         def __exit__(self, exc_type, exc_val, exc_tb):
-            """Allows print after exiting."""
+            """Allows to print after exiting."""
             sys.stdout.close()
             sys.stdout = self._original_stdout
 

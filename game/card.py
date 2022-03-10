@@ -4,6 +4,8 @@ import random
 
 
 class Card:
+    """Class Card to shuffle card and get their value."""
+
     suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
 
     ranks = [
