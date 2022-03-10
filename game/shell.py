@@ -15,8 +15,10 @@ class Shell(cmd.Cmd):
     def do_start(self, _):
         """Start the game in "short" mode with "cheat" off."""
         print("""
-You and me will play war game. When you want to draw a card, press enter.
-Whoever has a higher card win both cards.\n""")
+You and me will play war game.
+When you want to draw a card, press enter.
+Whoever has a higher card win both cards.
+If we have the same card value, a war will start!\n""")
         the_game = game.Game()
         the_game.play_short(self.name)
         print("""\nType 'start' to start a new game or 'exit' to quit.""")
