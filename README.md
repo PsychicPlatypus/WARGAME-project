@@ -5,7 +5,9 @@ Group members are: Einav Zilka, Dzenis Madzovic and Luan Rexhepi.
 
 ## Description
 War (also known as Battle in the United Kingdom) is a simple card game, typically played by two players using a standard playing card deck — and often played by children. There are many variations, as well as related games such as the German 32-card Tod und Leben ("Life and Death").<br />
-This is an implementation of the War card game, made completely in python. 
+This is an implementation of the War card game, made completely in python. Our implementation of the war game includes two game modes:
+* Short - played for 26 turns, winner is decided by who has more cards in their deck. Scores are based on the number of cards.
+* Long - played until one of the players loses all cards. Scores are based on the number of draws it took to finish the game.
 
 ## Getting Started
 
