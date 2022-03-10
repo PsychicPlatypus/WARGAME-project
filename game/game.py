@@ -1,6 +1,6 @@
 """The logic behind the War card game."""
-from game.card import Card
-from game.highscores import highscores
+import card
+import highscores
 
 
 class Game:
@@ -11,11 +11,11 @@ class Game:
         com_cards, hum_cards = 26, 26
 
         for i in range(26):
-            c = Card()
+            c = card.Card()
             print("\n" + "-" * 30)
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
-            print(f"You: {card_you:<8} Computer: {card_computer}")
+            print(f"You: {card_you:<8} | Computer: {card_computer}")
             if not cheat:
                 if not self.ask_input():
                     break
@@ -27,8 +27,14 @@ class Game:
             else:
                 res_two = self.war(com_cards, hum_cards)
                 hum_cards, com_cards = res_two[1], res_two[2]
-        print(f"\nFinal score:\nYou: {hum_cards}\tComputer: {com_cards}")
-        highscores().short_scores(player, hum_cards, hum_cards > com_cards)
+        if com_cards > hum_cards:
+            print("\nYOU LOST. Maybe next time ;)")
+        elif com_cards < hum_cards:
+            print("\nYOU WIN!!! Congrats!")
+        else:
+            print("\nIt's a tie. No one wins.")
+        print(f"\nFinal score:\nYou: {hum_cards} | Computer: {com_cards}")
+        highscores.highscores().short_scores(player, hum_cards, hum_cards > com_cards)
 
     def play_long(self, player, cheat=False) -> None:
         """Plays the game until the entire deck runs out, long version."""
@@ -36,11 +42,11 @@ class Game:
         com_cards, hum_cards, counter = 26, 26, 0
 
         while com_cards > 0 and hum_cards > 0:
-            c = Card()
+            c = card.Card()
             print("\n" + "-" * 30)
             card_you, card_computer = c.random_card(), c.random_card()
             val_you, val_com = c.value(card_you), c.value(card_computer)
-            print(f"You: {card_you:<8} Computer: {card_computer}")
+            print(f"You: {card_you:<8} | Computer: {card_computer}")
             if not cheat:
                 if not self.ask_input():
                     break
@@ -54,10 +60,17 @@ class Game:
                 res_two = self.war(com_cards, hum_cards)
                 hum_cards, com_cards = res_two[1], res_two[2]
             counter += 1
+        print("No more cards!\n")
+        if com_cards > hum_cards:
+            print("\nYOU LOST. Maybe next time ;)")
+        elif com_cards < hum_cards:
+            print("\nYOU WIN!!! Congrats!")
+        else:
+            print("\nIt's a tie. No one wins.")
         print(
-            f"No more cards!\n" f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}"
+            f"Final score:\nYou: {hum_cards} | Computer: {com_cards}"
         )
-        highscores().long_scores(player, hum_cards, counter)
+        highscores.highscores().long_scores(player, hum_cards, counter)
 
     def ask_input(self) -> None:
         """Gets the input from unit (to continue drawing cards)."""
@@ -89,7 +102,7 @@ class Game:
     def war(self, com, hum) -> tuple:
         """In case of a draw."""
         print("\nSAME CARDS, WAR!")
-        c = Card()
+        c = card.Card()
         hum_c, com_c = c.random_card(), c.random_card()
         val_h, val_c = c.value(hum_c), c.value(com_c)
         if val_h == val_c:
