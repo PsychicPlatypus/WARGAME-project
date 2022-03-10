@@ -2,7 +2,7 @@
 
 
 import unittest
-from game import highscores
+from war import highscores
 
 
 class Test_highscores(unittest.TestCase):
