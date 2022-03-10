@@ -1,6 +1,6 @@
 """The logic behind the War card game."""
-import card
-import highscores
+from game import card
+from game import highscores
 
 
 class Game:
