@@ -7,7 +7,7 @@ import io
 import random
 import sys
 import os
-from game import Game
+from game.game import Game
 
 
 class test_game(unittest.TestCase):
@@ -55,7 +55,7 @@ class test_game(unittest.TestCase):
     def test_print_true(self):
         """Tests if the print function delivers the correct output when\
             the player wins."""
-        exp = "You win.\n" + "You have 1 cards and the computer has 1\n"
+        exp = "Great! You win!!!\n" + "You have 1 cards and the computer has 1\n"
         self.assert_stdout(True, exp)
 
     def test_print_false(self):
@@ -70,7 +70,7 @@ class test_game(unittest.TestCase):
         with self.HiddenPrints():
             res = Game().war(5, 5)
             exp = (None, 9, 1)
-            self.assertAlmostEquals(res, exp)
+            self.assertAlmostEqual(res, exp)
 
     def test_input_yes(self):
         """Tests if the function will accept yes for an answer."""

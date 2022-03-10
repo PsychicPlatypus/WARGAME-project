@@ -3,7 +3,7 @@
 
 import unittest
 import random
-from card import Card
+from game.card import Card
 
 
 class TestCard(unittest.TestCase):
