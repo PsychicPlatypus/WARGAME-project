@@ -55,7 +55,7 @@ class test_game(unittest.TestCase):
     def test_print_true(self):
         """Tests if the print function delivers the correct output when\
             the player wins."""
-        exp = "Great! You win!!!\n" + "You have 1 cards and the computer has 1\n"
+        exp = "Great! You win!!!\nYou have 1 cards and the computer has 1\n"
         self.assert_stdout(True, exp)
 
     def test_print_false(self):
@@ -68,9 +68,13 @@ class test_game(unittest.TestCase):
         """Tests if a war occurs correctly."""
         random.seed(0)
         with self.HiddenPrints():
-            res = Game().war(5, 5)
-            exp = (None, 9, 1)
-            self.assertAlmostEqual(res, exp)
+            game = Game().war(5, 5)
+            if game == (None, 9, 1) or game == (None, 1, 9):
+                res = True
+            else:
+                res = False
+            exp = True
+            self.assertEqual(res, exp)
 
     def test_input_yes(self):
         """Tests if the function will accept yes for an answer."""
