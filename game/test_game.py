@@ -17,7 +17,7 @@ class test_game(unittest.TestCase):
         def __enter__(self):
             """Doesn't allow print statements."""
             self._original_stdout = sys.stdout
-            sys.stdout = open(os.devnull, 'w')
+            sys.stdout = open(os.devnull, "w")
 
         def __exit__(self, exc_type, exc_val, exc_tb):
             """Allows print after exiting."""
@@ -44,7 +44,7 @@ class test_game(unittest.TestCase):
             exp = (None, 0, 2)
             self.assertEqual(res, exp)
 
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @unittest.mock.patch("sys.stdout", new_callable=io.StringIO)
     def assert_stdout(self, n, expected_output, mock_stdout):
         """Catches the "print" output."""
         Game().print_screen(n, 1, 1)
@@ -72,14 +72,14 @@ class test_game(unittest.TestCase):
 
     def test_input_yes(self):
         """Tests if the function will accept yes for an answer."""
-        with unittest.mock.patch('builtins.input', return_value="yes"):
+        with unittest.mock.patch("builtins.input", return_value="yes"):
             res = Game().ask_input()
             exp = True
             self.assertEqual(res, exp)
 
     def test_input_no(self):
         """Tests if the function will accept no for an answer."""
-        with unittest.mock.patch('builtins.input', return_value="no"):
+        with unittest.mock.patch("builtins.input", return_value="no"):
             res = Game().ask_input()
             exp = False
             self.assertEqual(res, exp)

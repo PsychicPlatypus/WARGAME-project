@@ -55,11 +55,12 @@ class Game:
                 hum_cards, com_cards = res_two[1], res_two[2]
             counter += 1
         print(
-            f"No more cards!\n"
-            f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}")
+            f"No more cards!\n" f"Final score:\nYou: {hum_cards}\tComputer: {com_cards}"
+        )
         highscores().long_scores(player, hum_cards, counter)
 
     def ask_input(self) -> None:
+        
         arg = input("Would you like to continue?: ")
         return arg.upper() in ["Y", "YES", "TRUE", "1", ""]
 
@@ -68,11 +69,13 @@ class Game:
         if arg:
             print(
                 f"You win.\nYou have {human_cards} cards"
-                f" and the computer has {computer_cards}")
+                f" and the computer has {computer_cards}"
+            )
         else:
             print(
                 f"The computer wins!!!\nYou have {human_cards} cards"
-                f" and the computer has {computer_cards}")
+                f" and the computer has {computer_cards}"
+            )
 
     def who_wins(self, com, hum, v_com, v_hum) -> tuple:
         """Decides who wins."""

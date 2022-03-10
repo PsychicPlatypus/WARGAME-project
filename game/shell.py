@@ -14,18 +14,22 @@ class Shell(cmd.Cmd):
 
     def do_start(self, _):
         """Starts the game in "short" mode with "cheat" off."""
-        print("""
+        print(
+            """
 You and me will play war game. When you want to draw a card, press enter.
-Whoever has a higher card win both cards.\n""")
+Whoever has a higher card win both cards.\n"""
+        )
         the_game = game.Game()
         the_game.play_short(self.name)
         print("""\nType 'start' to start a new game or 'exit' to quit.""")
 
     def do_long(self, _):
         """Starts the game in "long" mode with "cheat" off."""
-        print("""This is a long version of the game.
+        print(
+            """This is a long version of the game.
         We will play until one of us has all of the deck.
-        When you want to draw a card, press enter.""")
+        When you want to draw a card, press enter."""
+        )
         long_game = game.Game()
         long_game.play_long(self.name)
         print("""\nType 'long' to start a new game or 'exit' to quit.\n""")
