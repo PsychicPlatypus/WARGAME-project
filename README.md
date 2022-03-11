@@ -55,7 +55,7 @@ $ . .venv/bin/activate
 ```
 $ make test
 ```
-* Make test will run all test files and make coverage test. Coverage results will be generated to a html report.
+* Make test will run all test files and make coverage test. Coverage results will be generated to a html report and can be found htmlcov/ directory.
 
 
 ## Generating documentation
@@ -78,7 +78,7 @@ $ make doc
 $ cd doc/
 ```
 * Under uml/ directory you can find the uml diagram.
-* Umder api/ directory you can find the comments and code documentation.
+* Under api/ directory you can find the comments and code documentation.
 
 ## Help
 
